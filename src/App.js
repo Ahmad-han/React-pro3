@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadPhotos } from "./action";
-import { removeTodo } from "./action";
+import { loadTodos, removeTodo } from "./action";
 
 export const App = () => {
   const todos = useSelector((state) => state.todos)
@@ -9,7 +8,7 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadPhotos())
+    dispatch(loadTodos())
   }, [])
 
 const handleDelete = (id) => {

@@ -1,4 +1,4 @@
-export const loadPhotos = () => {
+export const loadTodos = () => {
     return (dispatch) => {
         dispatch({type: "load/todos/start"})
 
