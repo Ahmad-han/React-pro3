@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loadPhotos } from "./action";
+import { removeTodo } from "./action";
 
-function App() {
+export const App = () => {
+  const todos = useSelector((state) => state.todos)
+  const loading = useSelector((state) => state.loading)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadPhotos())
+  }, [])
+
+const handleDelete = (id) => {
+  dispatch(removeTodo(id))
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Список дел:</h1>
+      <ul>
+        
+        { loading ? <h3>"Идет загрузка..."</h3> :
+          todos.map((item) => {
+            return (
+              
+            <li>
+              <input type="checkbox"/>
+              <div className="todo">{item.title}</div>
+              <button onClick={() => handleDelete(item.id)}>УДАЛИТЬ</button>
+              </li>
+          )})
+        }
+        
+      </ul>
     </div>
   );
 }
 
-export default App;
+
