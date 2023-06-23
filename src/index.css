@@ -44,3 +44,7 @@
   color: white;
   transition: 0.2s;
 }
+.App > ul > li > input {
+  width: 20px;
+  cursor: pointer;
+}

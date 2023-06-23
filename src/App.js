@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadTodos, removeTodo } from "./action";
+import { loadTodos, removeTodo, updateCheck } from "./action";
 
 export const App = () => {
   const todos = useSelector((state) => state.todos)
@@ -15,6 +15,11 @@ const handleDelete = (id) => {
   dispatch(removeTodo(id))
 }
 
+const handleChecked = (id, completed) => {
+  dispatch(updateCheck(id))
+}
+
+
   return (
     <div className="App">
       <h1>Список дел:</h1>
@@ -25,7 +30,11 @@ const handleDelete = (id) => {
             return (
               
             <li>
-              <input type="checkbox"/>
+              <input 
+              type="checkbox"
+              checked={item.completed}
+              onChange={() => handleChecked(item.id, item.completed)}
+              />
               <div className="todo">{item.title}</div>
               <button onClick={() => handleDelete(item.id)}>УДАЛИТЬ</button>
               </li>
