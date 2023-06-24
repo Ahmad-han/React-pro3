@@ -29,7 +29,7 @@
   padding-top: 5px;
 }
 
-.App > ul > li > button {
+/* .App > ul > li > button {
   border: none;
   padding: 8px;
   background-color: lightskyblue;
@@ -43,7 +43,7 @@
   background-color: black;
   color: white;
   transition: 0.2s;
-}
+} */
 .App > ul > li > input {
   width: 20px;
   cursor: pointer;

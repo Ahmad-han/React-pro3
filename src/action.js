@@ -18,7 +18,7 @@ export const loadTodos = () => {
 
 export const removeTodo = (id) => {
     return (dispatch) => {
-        dispatch({type: "delete/todo/start"})
+        dispatch({type: "delete/todo/start", payload: id})
 
         fetch(`https://jsonplaceholder.typicode.com/todos/${id}/?_limit=20`, {
             method: "DELETE"
@@ -36,7 +36,7 @@ export const removeTodo = (id) => {
 
 export const updateCheck = (id, completed) => {
     return (dispatch) => {
-        dispatch({type: "check/load/start"})
+        dispatch({type: "check/load/start", payload: id})
 
         fetch(`https://jsonplaceholder.typicode.com/todos/${id}/?_limit=20`, {
             method: "PATCH",
@@ -51,7 +51,7 @@ export const updateCheck = (id, completed) => {
         .then((json) => {
             dispatch({
                 type: "check/load/success",
-                payload: id
+                payload: id,
             })
         })
 
