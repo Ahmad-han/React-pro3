@@ -3,7 +3,10 @@ import { Checking } from './Checking';
 
 
 
-export const Todo = ({ id, checking, completed, deleting, handleChecked, handleDelete, title }) => {
+export const Todo = ({ id, checking, completed, deleting, handleChecked, handleDelete, title, userId, users }) => {
+
+const user = users.find((u) => u.id === userId)
+
 
     return (
         
@@ -16,6 +19,8 @@ export const Todo = ({ id, checking, completed, deleting, handleChecked, handleD
              />
               <div className="todo">
                 {title}
+                <br />
+                <b>(email: {user.email})</b>
               </div>
               <Button 
                 handleDelete={handleDelete}

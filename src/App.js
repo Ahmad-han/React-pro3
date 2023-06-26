@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadTodos, removeTodo, updateCheck } from "./redux/action";
+import { loadTodos, removeTodo, updateCheck, loadUsers } from "./redux/action";
 import { Todos } from "./components/Todos";
 
 
 export const App = () => {
   const loading = useSelector((state) => state.loading)
+  const loadingUsers = useSelector((state) => state.loadUsers)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadTodos())
+    dispatch(loadUsers())
   }, [])
 
 const handleDelete = (id) => {
@@ -26,7 +28,8 @@ const handleChecked = (id, completed) => {
       <h1>Список дел:</h1>
       <ul>
         
-        { loading ? <h3>"Идет загрузка..."</h3> :
+        { 
+        (loading || loadingUsers) ? <h3>"Идет загрузка..."</h3> :
          <Todos 
          handleDelete = {handleDelete}
          handleChecked = {handleChecked}
