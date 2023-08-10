@@ -1,8 +1,7 @@
-import { loadUsers } from "./action"
+import { TodoAction, TodoActionTypes, initialStateType } from "../types"
 
 
-
-const initialState = {
+const initialState:initialStateType = {
     todos: [],
     loading: false,
     users: [],
@@ -10,22 +9,22 @@ const initialState = {
   }
   
   
- export const reducer = (state = initialState, action) => {
+ export const reducer = (state = initialState, action: TodoAction) => {
     switch(action.type) {
-      case "load/todos/start":
+      case TodoActionTypes.FETCH_TODOS:
         return {
           ...state,
           loading: true
         }
   
-        case "load/todos/fulfilled":
+        case TodoActionTypes.FETCH_TODO_SUCCESS:
           return {
             ...state,
            todos: action.payload,
            loading: false
           }
   
-          case "delete/todo/start": 
+          case TodoActionTypes.FETCH_DELETE: 
           return {
             ...state,
             todos: state.todos.map((todo) => {
@@ -39,13 +38,13 @@ const initialState = {
             })
           }
   
-          case "delete/todo/fulfilled":
+          case TodoActionTypes.FETCH_DELETE_SUCCESS:
             return {
               ...state,
             todos: state.todos.filter((todo) => todo.id === action.payload ? false : true)
             }
   
-            case "check/load/start":
+            case TodoActionTypes.FETCH_CHECK:
               return {
                 ...state,
                 todos: state.todos.map((todo) => {
@@ -60,7 +59,7 @@ const initialState = {
               }
   
   
-          case "check/load/success":
+          case TodoActionTypes.FETCH_CHECK_SUCCESS:
             return {
               ...state,
               todos: state.todos.map((todo) => {
@@ -75,13 +74,13 @@ const initialState = {
               })
             }
 
-            case "load/users/start":
+            case TodoActionTypes.FETCH_USER:
               return {
                 ...state,
                 loadingUsers: true
               }
             
-            case "load/users/fulfilled":
+            case TodoActionTypes.FETCH_USER_SUCCESS:
               return {
                 ...state,
                 users: action.payload,

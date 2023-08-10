@@ -1,9 +1,22 @@
+import React from 'react';
 import { Button } from './Button';
 import { Checking } from './Checking';
 
+interface TodoProps {
+  id: number, 
+  checking: boolean, 
+  completed: boolean, 
+  deleting: boolean, 
+  handleDelete: (id: number) => void
+  handleChecked: (id: number, completed: boolean) => void
+  title: string, 
+  userId: number, 
+  users: any[]
+}
 
 
-export const Todo = ({ id, checking, completed, deleting, handleChecked, handleDelete, title, userId, users }) => {
+
+export const Todo: React.FC<TodoProps> = ({ id, checking, completed, deleting, handleChecked, handleDelete, title, userId, users }) => {
 
 const user = users.find((u) => u.id === userId)
 

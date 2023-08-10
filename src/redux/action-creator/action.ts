@@ -1,12 +1,18 @@
+import { Dispatch } from "react"
+import { TodoAction, TodoActionTypes } from "../../types"
+
+
+
+
 export const loadTodos = () => {
-    return (dispatch) => {
-        dispatch({type: "load/todos/start"})
+    return (dispatch: Dispatch<TodoAction>):void => {
+        dispatch({type: TodoActionTypes.FETCH_TODOS})
 
         fetch("https://jsonplaceholder.typicode.com/todos")
         .then((response) => response.json())
         .then((json) => {
             dispatch({
-                type: "load/todos/fulfilled",
+                type: TodoActionTypes.FETCH_TODO_SUCCESS,
                 payload: json
             })
         })
@@ -16,9 +22,9 @@ export const loadTodos = () => {
 }
 
 
-export const removeTodo = (id) => {
-    return (dispatch) => {
-        dispatch({type: "delete/todo/start", payload: id})
+export const removeTodo = (id: number) => {
+    return (dispatch: Dispatch<TodoAction>):void => {
+        dispatch({type: TodoActionTypes.FETCH_DELETE, payload: id})
 
         fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
             method: "DELETE"
@@ -26,7 +32,7 @@ export const removeTodo = (id) => {
         .then((response) => response.json())
         .then((json) => {
             dispatch({
-                type: "delete/todo/fulfilled",
+                type: TodoActionTypes.FETCH_DELETE_SUCCESS,
                 payload: id
             })
         })
@@ -34,9 +40,9 @@ export const removeTodo = (id) => {
 }
 
 
-export const updateCheck = (id, completed) => {
-    return (dispatch) => {
-        dispatch({type: "check/load/start", payload: id})
+export const updateCheck = (id: number, completed: boolean) => {
+    return (dispatch: Dispatch<TodoAction>):void => {
+        dispatch({type: TodoActionTypes.FETCH_CHECK, payload: id})
 
         fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
             method: "PATCH",
@@ -50,7 +56,7 @@ export const updateCheck = (id, completed) => {
         .then((response) => response.json())
         .then((json) => {
             dispatch({
-                type: "check/load/success",
+                type: TodoActionTypes.FETCH_CHECK_SUCCESS,
                 payload: id,
             })
         })
@@ -60,14 +66,14 @@ export const updateCheck = (id, completed) => {
 }
 
 export const loadUsers = () => {
-    return (dispatch) => {
-        dispatch({type: "load/users/start"})
+    return (dispatch: Dispatch<TodoAction>):void => {
+        dispatch({type: TodoActionTypes.FETCH_USER})
 
         fetch("https://jsonplaceholder.typicode.com/users")
         .then((response) => response.json())
         .then((json) => {
             dispatch({
-                type: "load/users/fulfilled",
+                type: TodoActionTypes.FETCH_USER_SUCCESS,
                 payload: json
             })
         })
