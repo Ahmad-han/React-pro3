@@ -4,8 +4,8 @@ import { Todo } from './Todo';
 
 
 export const Todos = ({ handleDelete, handleChecked }) => {
-    const todos = useSelector((state) => state.todos)
-    const users = useSelector((state) => state.users)
+    const todos = useSelector((state) => state.todos.todos)
+    const users = useSelector((state) => state.users.users)
 
     return (
         <>

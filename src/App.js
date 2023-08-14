@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadTodos, removeTodo, updateCheck, loadUsers } from "./redux/action";
 import { Todos } from "./components/Todos";
+import { loadTodos, removeTodo, updateCheck } from "./redux/TodosSlice";
+import { loadUsers } from "./redux/UsersSlice";
 
 
 export const App = () => {
-  const loading = useSelector((state) => state.loading)
-  const loadingUsers = useSelector((state) => state.loadUsers)
+  const loading = useSelector((state) => state.todos.loading)
+  const loadingUsers = useSelector((state) => state.users.loadUsers)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const handleDelete = (id) => {
 }
 
 const handleChecked = (id, completed) => {
-  dispatch(updateCheck(id))
+  dispatch(updateCheck({id: id, completed: completed}))
 }
 
 
