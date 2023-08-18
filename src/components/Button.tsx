@@ -1,7 +1,7 @@
 
 
 interface ButtonProps {
-    handleDelete: (a: number) => void
+    handleDelete: (id: number) => void
     deleting: boolean
     id: number
 }
