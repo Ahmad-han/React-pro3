@@ -1,26 +1,32 @@
 .App {
   width: 900px;
   margin: auto;
+
+  h1 {
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 20px;
+  }
+
+  ul {
+    list-style: none;
+
+     li {
+      width: 700px;
+      margin: 20px auto;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      border: 1px solid lightgray;
+
+      input {
+        width: 20px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
-.App > h1 {
-  text-align: center;
-  border-bottom: 1px solid lightgray;
-  padding-bottom: 20px;
-}
-
-.App > ul {
-  list-style: none;
-}
-
-.App > ul > li {
-  width: 700px;
-  margin: 20px auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  border: 1px solid lightgray;
-}
 .todo {
   flex: 1;
   margin-left: 20px;
@@ -44,7 +50,3 @@
   color: white;
   transition: 0.2s;
 } */
-.App > ul > li > input {
-  width: 20px;
-  cursor: pointer;
-}

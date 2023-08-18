@@ -1,22 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { initialUserType } from '../types'
 
-const initialState = {
+const initialState: initialUserType = {
     users: [],
     loadingUsers: false
 }
 
 
 export const loadUsers = createAsyncThunk(
-    "load/users/start",
+    "FETCH_USERS",
     async() => {
         const response = await fetch("https://jsonplaceholder.typicode.com/users")
 
         return response.json()
     }
 )
-
-
-
 
 export const UserSlice = createSlice({
   name: 'user',

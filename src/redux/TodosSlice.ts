@@ -1,8 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { initialTodoType } from '../types'
 
-const initialState = {
+const initialState: initialTodoType = {
     todos: [],
     loading: false,
+}
+
+interface removeId {
+  id: number
+}
+
+interface updateCheckParams {
+  id: number
+  completed: boolean
 }
 
 
@@ -18,7 +28,7 @@ export const loadTodos = createAsyncThunk(
 
 export const removeTodo = createAsyncThunk(
     "delete/todo/start",
-    async({ id }) => {
+    async({ id }: removeId) => {
      const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
             method: "DELETE"
         })
@@ -29,7 +39,7 @@ export const removeTodo = createAsyncThunk(
 
 export const updateCheck = createAsyncThunk(
     "check/load/start",
-    async({ id, completed }) => {
+    async({ id, completed }: updateCheckParams) => {
         const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
             method: "PATCH",
             headers: {
